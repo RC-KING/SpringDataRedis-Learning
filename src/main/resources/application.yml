@@ -20,9 +20,7 @@ spring:
         max-idle: 200
         # 最小空闲连接，默认0
         min-idle: 5
-    sentinel:
-      master: mymaster
-      nodes: 192.168.243.128:26379,192.168.243.128:26380,192.168.243.128:26381
+
 
 
 

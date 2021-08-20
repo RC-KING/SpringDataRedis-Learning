@@ -2,6 +2,8 @@ package com.xxxx.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.redis.connection.RedisSentinelConfiguration;
+import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
 import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
@@ -24,5 +26,17 @@ public class RedisConfig {
         redisTemplate.setHashValueSerializer(new GenericJackson2JsonRedisSerializer());
         redisTemplate.setConnectionFactory(redisConnectionFactory);
         return redisTemplate;
+    }
+    @Bean
+    public RedisSentinelConfiguration redisSentinelConfiguration(){
+        RedisSentinelConfiguration redisSentinelConfiguration = new RedisSentinelConfiguration();
+        redisSentinelConfiguration
+                .master("mymaster")
+                .sentinel("192.168.243.128",26379)
+                .sentinel("192.168.243.128",26380)
+                .sentinel("192.168.243.128",26381)
+                .setPassword("jwj422123");
+
+        return redisSentinelConfiguration;
     }
 }
