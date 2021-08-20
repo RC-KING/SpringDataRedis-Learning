@@ -3,7 +3,7 @@ spring:
     # Redis服务器地址
     host: 192.168.243.128
     # Redis服务器端口
-    port: 6379
+    port: 6381
     # Redis服务器端口
     password: jwj422123
     # Redis服务器端口
@@ -20,3 +20,10 @@ spring:
         max-idle: 200
         # 最小空闲连接，默认0
         min-idle: 5
+    sentinel:
+      master: mymaster
+      nodes: 192.168.243.128:26379,192.168.243.128:26380,192.168.243.128:26381
+
+
+
+
